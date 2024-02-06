@@ -5,12 +5,12 @@ using RainFall.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Base URL Config
-builder.Services.Configure<FloodMonitoringApiOptions>(builder.Configuration.GetSection("FloodMonitoringApi"));
+builder.Services.Configure<BaseUrlOptions>(builder.Configuration.GetSection("FloodMonitoringApi"));
 
 // Services
 builder.Services.AddHttpClient<FloodMonitoringService>((serviceProvider, client) =>
 {
-    var options = serviceProvider.GetRequiredService<IOptions<FloodMonitoringApiOptions>>().Value;
+    var options = serviceProvider.GetRequiredService<IOptions<BaseUrlOptions>>().Value;
     client.BaseAddress = new Uri(options.BaseUrl);
 });
 

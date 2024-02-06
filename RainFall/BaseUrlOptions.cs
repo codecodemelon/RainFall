@@ -1,6 +1,6 @@
 ﻿namespace RainFall
 {
-    public class FloodMonitoringApiOptions
+    public class BaseUrlOptions
     {
         public string BaseUrl { get; set; }
     }
