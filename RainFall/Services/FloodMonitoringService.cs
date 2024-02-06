@@ -13,14 +13,14 @@ namespace RainFall.Services
             _httpClient = httpClient;
         }
 
-        public async Task<FloodMonitoringData> GetFloodMonitoringDataAsync(string stationId)
+        public async Task<BaseModel> GetFloodMonitoringDataAsync(string stationId)
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}{stationId}/measures");
             response.EnsureSuccessStatusCode();
 
-            var serializer = new DataContractJsonSerializer(typeof(FloodMonitoringData));
+            var serializer = new DataContractJsonSerializer(typeof(BaseModel));
             await using var responseStream = await response.Content.ReadAsStreamAsync();
-            var floodData = serializer.ReadObject(responseStream) as FloodMonitoringData;
+            var floodData = serializer.ReadObject(responseStream) as BaseModel;
 
             return floodData;
         }

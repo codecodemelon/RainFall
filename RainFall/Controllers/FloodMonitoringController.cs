@@ -16,7 +16,7 @@ namespace RainFall.Controllers
         }
 
         [HttpGet("{stationId}")]
-        public async Task<ActionResult<FloodMonitoringData>> Get(string stationId = "3680")
+        public async Task<ActionResult<BaseModel>> GetMeasureFromStation(string stationId = "3680")
         {
             try
             {
