@@ -27,8 +27,22 @@ namespace RainFall.Controllers
             {
                 // Handle HTTP request exceptions
                 return StatusCode(500, ex.Message);
+            }        
+        }
+
+        [HttpGet("{stationId}/readings/{limit}")]
+        public async Task<ActionResult<BaseModel>> GetReadingFromMeasure(string stationId = "3680", int limit = 20)
+        {
+            try
+            {
+                var result = await _service.GetReadingFromMeasureAsync(stationId, limit);
+                return Ok(result);
             }
-            
+            catch (HttpRequestException ex)
+            {
+                // Handle HTTP request exceptions
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
