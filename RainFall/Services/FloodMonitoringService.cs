@@ -24,5 +24,19 @@ namespace RainFall.Services
 
             return floodData;
         }
+
+        public async Task<BaseModel> GetReadingFromMeasureAsync(string stationId, int limit)
+        {
+            var response = await _httpClient.GetAsync($"{_baseUrl}{stationId}/readings?_sorted&_limit={limit}");
+            response.EnsureSuccessStatusCode();
+
+            var serializer = new DataContractJsonSerializer(typeof(BaseModel));
+            await using var responseStream = await response.Content.ReadAsStreamAsync();
+            var floodData = serializer.ReadObject(responseStream) as BaseModel;
+
+            return floodData;
+        }
+
+
     }
 }
