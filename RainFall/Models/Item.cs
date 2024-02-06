@@ -43,5 +43,14 @@ namespace RainFall.Models
 
         [DataMember(Name = "valueType")]
         public string ValueType { get; set; }
+
+        [DataMember(Name = "dateTime")]
+        public string? DateTime { get; set; }
+
+        [DataMember(Name = "measure")]
+        public string? Measure { get; set; }
+
+        [DataMember(Name = "value")]
+        public double? Value { get; set; }
     }
 }
